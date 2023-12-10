@@ -1,15 +1,17 @@
-import LogoBar from "./components/LogoBar/LogoBar";
-import Sidebar from "./components/Sidebar/Sidebar";
+import FiturBar from "./components/common/FiturBar/FiturBar";
+import LogoBar from "./components/common/LogoBar/LogoBar";
+import Sidebar from "./components/common/Sidebar/Sidebar";
 
 export default function Home() {
   return (
-    <main className="w-full flex ">
-      <div className="h-full flex">
+    <main className="w-full flex">
+      <div className="w-1/5 h-full flex">
         <Sidebar />
       </div>
-      {/* <div className="w-full">
+      <div className="w-full mx-auto flex flex-col">
         <LogoBar />
-      </div> */}
+        <FiturBar />
+      </div>
     </main>
   );
 }

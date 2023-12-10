@@ -1,6 +1,6 @@
-import FiturBar from "@/app/components/FiturBar/FiturBar";
-import LogoBar from "@/app/components/LogoBar/LogoBar";
-import Sidebar from "@/app/components/Sidebar/Sidebar";
+import FiturBar from "@/app/components/common/FiturBar/FiturBar";
+import LogoBar from "@/app/components/common/LogoBar/LogoBar";
+import Sidebar from "@/app/components/common/Sidebar/Sidebar";
 
 const CorporateMember = () => {
   return (
