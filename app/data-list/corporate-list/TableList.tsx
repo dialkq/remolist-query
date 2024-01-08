@@ -39,7 +39,6 @@ const Tablelist = () => {
 
   return (
     <Table className='w-10/12 mx-auto border border-black'>
-      <TableCaption className='mb-10'>A list of corporate</TableCaption>
       <TableHeader>
         <TableRow className='bg-slate-200'>
           <TableHead className="font-extrabold font-sans text-black">ID</TableHead>
@@ -50,7 +49,7 @@ const Tablelist = () => {
       </TableHeader>
       <TableBody>
         {data.map((item) => (
-          <TableRow key={item.id}>
+          <TableRow key={item.id} className='odd:bg-white even:bg-slate-50'>
             <TableCell className="">{item.id}</TableCell>
             <TableCell>{item.company_name}</TableCell>
             <TableCell>{item.status}</TableCell>

@@ -22,32 +22,32 @@ export default function SidebarComponent() {
           <SubMenu
             icon={<Icon name="Data List" icon={"mingcute:news-fill"} />}
             label="Data List"
-            className="font-mono text-md sm:text-lg font-bold text-black"
+            className="font-sans text-base sm:text-lg font-bold text-black"
           >
             <Link href="/data-list/corporate-list">
-              <MenuItem>Corporate List</MenuItem>
+              <MenuItem className="text-base">Corporate List</MenuItem>
             </Link>
             <Link href="/data-list/expert-profile">
-              <MenuItem>Expert Profile</MenuItem>
+              <MenuItem className="text-base">Expert Profile</MenuItem>
             </Link>
           </SubMenu>
 
           <SubMenu
             icon={<Icon name="Lowongan" icon={"ic:baseline-work"} />}
             label="Lowongan"
-            className="font-mono text-md sm:text-lg font-bold text-black"
+            className="font-sans text-base sm:text-lg font-bold text-black"
           >
             <Link href="/lowongan/it">
-              <MenuItem>IT</MenuItem>
+              <MenuItem className="text-base">IT</MenuItem>
             </Link>
             <Link href="/lowongan/finance">
-              <MenuItem>Finance</MenuItem>
+              <MenuItem className="text-base">Finance</MenuItem>
             </Link>
             <Link href="/lowongan/hr">
-              <MenuItem>HR</MenuItem>
+              <MenuItem className="text-base">HR</MenuItem>
             </Link>
             <Link href="/lowongan/marketing">
-              <MenuItem>Marketing</MenuItem>
+              <MenuItem className="text-base">Marketing</MenuItem>
             </Link>
           </SubMenu>
         </Menu>

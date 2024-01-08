@@ -39,7 +39,7 @@ const LogoBar = () => {
                 height="30"
                 className="text-white my-auto mr-1"
               />
-              <p className="text-white text-sm font-mono hidden sm:flex">
+              <p className="text-white text-sm font-sans hidden sm:flex">
                 {name}
               </p>
             </div>
