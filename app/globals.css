@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
  
+.debug-red {
+  border: 2px solid red;
+}
+
+.debug-green {
+  border: 2px solid green;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

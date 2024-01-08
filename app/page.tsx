@@ -1,11 +1,8 @@
-import FiturBar from "./components/common/FiturBar";
-import LogoBar from "./components/common/LogoBar";
-import Sidebar from "./components/common/Sidebar/SidebarOld";
 
 export default function Home() {
   return (
-    <main className="w-full flex">
-     
+    <main className="w-full flex flex-col bg-white">
+      <h1 className="text-5xl mx-auto font-mono font-extrabold mt-10">Welcome</h1>
     </main>
   );
 }
