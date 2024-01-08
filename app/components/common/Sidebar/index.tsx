@@ -24,8 +24,8 @@ export default function SidebarComponent() {
             label="Data List"
             className="font-mono text-md sm:text-lg font-bold text-black"
           >
-            <Link href="/data-list/corporate-member">
-              <MenuItem>Corporate Member</MenuItem>
+            <Link href="/data-list/corporate-list">
+              <MenuItem>Corporate List</MenuItem>
             </Link>
             <Link href="/data-list/expert-profile">
               <MenuItem>Expert Profile</MenuItem>
