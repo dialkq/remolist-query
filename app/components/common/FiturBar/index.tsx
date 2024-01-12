@@ -1,7 +1,7 @@
-import { Modal } from "../Modal";
+import { ModalAddNew } from "../ModalAddNew";
 const FiturBar = () => {
   return (
-    <div className="w-full mx-auto my-3 sm:my-5 flex justify-evenly bg-white">
+    <div className="w-10/12 mx-auto my-3 sm:my-5 flex justify-between bg-white">
       {/* <!-- FILTER INPUT SEARCH--> */}
       <div className="flex">
         <input
@@ -12,7 +12,7 @@ const FiturBar = () => {
           placeholder="Search..."
         />
       </div>
-      <Modal />
+      <ModalAddNew />
     </div>
   );
 };

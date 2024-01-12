@@ -12,11 +12,11 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 
-export function Modal() {
+export function ModalAddNew() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button className="bg-black text-white">Edit Profile</Button>
+        <Button className="bg-black text-white">Add New</Button>
       </DialogTrigger>
       <DialogContent className="w-full">
         <DialogHeader>
