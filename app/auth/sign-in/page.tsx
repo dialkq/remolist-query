@@ -14,7 +14,7 @@ const Page = () => {
     const password = event.currentTarget.password.value;
     try {
       await handleSignIn(email, password);
-      router.push('/data-list/corporate-list');
+      router.push('/data-list/corporate-status');
     } catch (error) {
       console.error(error);
     } finally {

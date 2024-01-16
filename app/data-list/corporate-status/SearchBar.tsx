@@ -1,7 +1,6 @@
-import { ModalAddNew } from "../ModalAddNew";
-const FiturBar = () => {
+const SearchBar = () => {
   return (
-    <div className="w-10/12 mx-auto my-3 sm:my-5 flex justify-between bg-white">
+    <div className="flex justify-between bg-white">
       {/* <!-- FILTER INPUT SEARCH--> */}
       <div className="flex">
         <input
@@ -12,9 +11,8 @@ const FiturBar = () => {
           placeholder="Search..."
         />
       </div>
-      <ModalAddNew />
     </div>
   );
 };
 
-export default FiturBar;
+export default SearchBar;
