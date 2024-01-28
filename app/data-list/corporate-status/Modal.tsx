@@ -13,9 +13,46 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useState } from "react";
 import { SelectIndustries } from "./SelectIndustries";
+import axios from "axios";
 
 export function Modal() {
-  const [toggled, setToggled] = useState(true);
+  const [toggled, setToggled] = useState(false);
+  const [value, setValue] = useState("");
+  const [error, setError] = useState("");
+  const handleSubmit = async () => {
+    if (!value) {
+      setError("Please select an industry");
+    } else {
+      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      try {
+        const response = await axios.post(
+          'https://vietexpert-api.d.logique.co.id/api/admin/corporate/store',
+          {
+            // Data yang akan dikirim ke API
+            // Anda perlu mengganti ini dengan data aktual Anda
+            data: value,
+          },
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        );
+  
+        // Tangani respons dari API
+        if (response.status === 200) {
+          // Sukses
+          console.log('Data berhasil disimpan');
+        } else {
+          // Gagal
+          console.log('Terjadi kesalahan saat menyimpan data');
+        }
+      } catch (error) {
+        console.error("There was an error!", error);
+      }
+    }
+  };
+  
 
   return (
     <Dialog open={toggled} onOpenChange={setToggled}>
@@ -36,6 +73,7 @@ export function Modal() {
               placeholder="Corporate Name"
               id="corporate-name"
               className="w-1/2"
+              required
             />
           </div>
 
@@ -60,15 +98,31 @@ export function Modal() {
           </div>
           <div className="flex items-center justify-between py-1">
             <Label htmlFor="email">Email</Label>
-            <Input placeholder="Email" id="email" className="w-1/2"></Input>
+            <Input
+              placeholder="Email"
+              id="email"
+              className="w-1/2"
+              required
+            ></Input>
           </div>
         </DialogHeader>
 
         {/* FOOTER */}
         <DialogFooter className="flex mx-auto w-full">
-          <Button type="submit" className="bg-black py-3 sm:py-6 w-full">
-            Submit
-          </Button>
+          <div className="flex flex-col w-full">
+            {error && (
+              <p className="text-red-700 text-xs font-mono w-full text-center my-auto">
+                {error}
+              </p>
+            )}
+            <Button
+              type="submit"
+              onClick={handleSubmit}
+              className="bg-black py-3 sm:py-6 w-full mt-1 sm:mt-2"
+            >
+              Submit
+            </Button>
+          </div>
         </DialogFooter>
       </DialogContent>
     </Dialog>
