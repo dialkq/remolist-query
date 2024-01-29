@@ -22,7 +22,7 @@ export default function SidebarComponent() {
   };
 
   return (
-    <div className="flex w-full sm:min-h-screen">
+    <div className="hidden w-full sm:min-h-screen"> {/* hidden aktif harusnya flex */}
       <Sidebar
         onBackdropClick={() => setToggled(false)}
         toggled={toggled}
