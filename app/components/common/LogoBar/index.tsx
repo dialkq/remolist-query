@@ -33,7 +33,7 @@ const LogoBar = () => {
       ) : (
         <div className="flex justify-between items-center mr-6 sm:mr-8 p-1">
           {name && (
-            <div className="flex justify-between items-center mr-8 sm:mr-12">
+            <div className="hidden sm:flex justify-between items-center mr-8 sm:mr-12">
               <Icon
                 icon={uiUserProfile}
                 height="30"
