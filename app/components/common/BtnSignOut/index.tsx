@@ -7,16 +7,6 @@ const BtnSignOut = () => {
 
   const handleSignOut = async () => {
     try {
-      // Get the token from local storage
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
-
-      // Make a request to the logout URL
-      const response = await axios.get('https://vietexpert-api.d.logique.co.id/api/admin/auth/logout', {
-        headers: {
-          'Authorization': `Bearer ${token}`
-        }
-      });
-
       localStorage.clear();
       router.push('/');
     } catch (error) {

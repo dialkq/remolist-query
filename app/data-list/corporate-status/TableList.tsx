@@ -13,40 +13,45 @@ import {
 } from "@/components/ui/table";
 
 import { Icon } from "@iconify/react";
-interface ApiResponse {
+
+interface Movie {
   id: number;
-  company_name: string;
-  status: string;
-  registration_date: string;
+  original_language: string;
+  release_date: string;
+  title: string;
+}
+
+interface ApiResponse {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
 }
 
 const Tablelist = () => {
-  const [data, setData] = useState<ApiResponse[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(0);
+  const [data, setData] = useState<Movie[]>([]);
 
   useEffect(() => {
-    const token =
-      typeof window !== "undefined" ? localStorage.getItem("token") : null;
+    const options = {
+      method: "GET",
+      url: "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=1&language=en-US&sort_by=popularity.desc",
+      headers: {
+        accept: "application/json",
+        Authorization:
+          "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ODg3MjZiOWQzNzdjMjI1ZmNmNzhhZjEwMTI0YTA4OCIsInN1YiI6IjY1ZGFjMDY0YWUyODExMDE3YzRjMzkwZSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.NPd90WmkTBur276VZ6-xXX1BWtxMmx77d9DIIBw1cm0",
+      },
+    };
+
     axios
-      .get(
-        `https://vietexpert-api.d.logique.co.id/api/admin/corporate?lt=10&of=${
-          (currentPage - 2) + 1
-        }&sb=id&ob=ASC`,
-        { 
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
-      .then((response) => {
-        setData(response.data.data.data);
-        setTotalPages(response.data.data.total_page);
+      .request<ApiResponse>(options)
+      .then(function (response) {
+        setData(response.data.results);
       })
-      .catch((error) => {
-        console.error("There was an error!", error);
+      .catch(function (error) {
+        console.error(error);
       });
-  }, [currentPage]);
+  }, []);
+
 
   return (
     <>
@@ -54,30 +59,26 @@ const Tablelist = () => {
         <TableHeader>
           <TableRow className="bg-slate-200">
             <TableHead className="font-extrabold font-sans text-black">
-              ID
+              Title
             </TableHead>
             <TableHead className="font-extrabold font-sans text-black">
-              Company Name
+              Language
             </TableHead>
             <TableHead className="font-extrabold font-sans text-black">
-              Status
-            </TableHead>
-            <TableHead className="font-extrabold font-sans text-black">
-              Registration Date
+              Release Date
             </TableHead>
             <TableHead className="font-extrabold font-sans text-black"></TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
-          {data.map((item) => (
+          {data.map((items) => (
             <TableRow
-              key={item.id}
+              key={items.id}
               className="odd:bg-white even:bg-slate-100 hover:bg-slate-3 00"
             >
-              <TableCell className="">{item.id}</TableCell>
-              <TableCell>{item.company_name}</TableCell>
-              <TableCell>{item.status}</TableCell>
-              <TableCell className="">{item.registration_date}</TableCell>
+              <TableCell className="">{items.title}</TableCell>
+              <TableCell>{items.original_language}</TableCell>
+              <TableCell className="">{items.release_date}</TableCell>
               <div className="flex">
                 <TableCell className="text-blue-500 cursor-pointer">
                   <Icon icon="ic:round-edit" />
@@ -93,11 +94,9 @@ const Tablelist = () => {
           ))}
         </TableBody>
       </Table>
-      <PaginationTable
-        currentPage={currentPage}
-        totalPages={totalPages}
-        setCurrentPage={setCurrentPage}
-      />
+      <PaginationTable currentPage={0} setCurrentPage={function (page: number): void {
+        throw new Error("Function not implemented.");
+      } } totalPages={0} />
     </>
   );
 };

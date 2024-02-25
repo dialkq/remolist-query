@@ -1,25 +1,11 @@
 "use client";
 import Link from "next/link";
-import handleSignIn from "./handleSignIn";
-import React, { useState } from 'react';
-import { useRouter } from 'next/navigation'
+import React, { useState } from "react";
+import { useRouter } from "next/navigation";
 const Page = () => {
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter()
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setIsLoading(true);
-    const email = event.currentTarget.email.value;
-    const password = event.currentTarget.password.value;
-    try {
-      await handleSignIn(email, password);
-      router.push('/data-list/corporate-status');
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
+  const router = useRouter();
+  const handleClick = () => {
+    router.push('/data-list/corporate-status');
   };
 
   return (
@@ -29,11 +15,7 @@ const Page = () => {
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Sign in to your account
           </h1>
-          <form
-            className="space-y-4 md:space-y-6"
-            action="#"
-            onSubmit={handleSubmit}
-          >
+          <form className="space-y-4 md:space-y-6" action="#">
             {/* EMAIL */}
             <div>
               <label
@@ -84,9 +66,9 @@ const Page = () => {
             <button
               type="submit"
               className="w-full text-white font-mono text-base bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:outline-none focus:ring-indigo-700 font-medium rounded-lg py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              disabled={isLoading}
+              onClick={handleClick}
             >
-              {isLoading ? 'Loading...' : 'Submit'}
+              Submit
             </button>
 
             {/* SIGN UP LINK */}
