@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { useMedia } from "react-use";
 import { Icon } from "@iconify/react";
 import Link from "next/link";
+import { RiCompassDiscoverLine } from "react-icons/ri";
 
 export default function SidebarComponent() {
   const isWide = useMedia("(min-width: 640px)");
@@ -30,39 +31,50 @@ export default function SidebarComponent() {
       >
         <Menu>
           <SubMenu
-            icon={<Icon name="Data List" icon={"mingcute:news-fill"} className="text-indigo-700" />}
-            label="Data List"
+            icon={<RiCompassDiscoverLine className="text-indigo-700 text-3xl text-center" />}
+            label="Discover"
             className="font-sans text-base sm:text-lg font-bold text-black"
           >
-            <Link href="/data-list/corporate-status">
-              <MenuItem className={getBlueName("/data-list/corporate-status")}>
-                Corporate Status
+            <Link href="/discover/movie">
+              <MenuItem className={getBlueName("/discover/movie")}>
+                Movie
               </MenuItem>
             </Link>
-            <Link href="/data-list/country-list">
-              <MenuItem className={getBlueName("/data-list/country-list")}>Country List</MenuItem>
-            </Link>
-            <Link href="/data-list/individual-member">
-            <MenuItem className={getBlueName('/data-list/individual-member')}>Individual Member</MenuItem>
+            <Link href="/discover/tv">
+              <MenuItem className={getBlueName("/discover/tv")}>TV</MenuItem>
             </Link>
           </SubMenu>
 
           <SubMenu
-            icon={<Icon name="Lowongan" icon={"ic:baseline-work"} className="text-emerald-700" />}
+            icon={
+              <Icon
+                name="Lowongan"
+                icon={"ic:baseline-work"}
+                className="text-emerald-700 text-2xl text-center"
+              />
+            }
             label="Lowongan"
             className="font-sans text-base sm:text-lg font-bold text-black"
           >
             <Link href="/lowongan/informasi-teknologi">
-              <MenuItem className={getGreenName("/lowongan/informasi-teknologi")}>IT</MenuItem>
+              <MenuItem
+                className={getGreenName("/lowongan/informasi-teknologi")}
+              >
+                IT
+              </MenuItem>
             </Link>
             <Link href="/lowongan/finance">
-              <MenuItem className={getGreenName("/lowongan/finance")}>Finance</MenuItem>
+              <MenuItem className={getGreenName("/lowongan/finance")}>
+                Finance
+              </MenuItem>
             </Link>
             <Link href="/lowongan/hr">
               <MenuItem className={getGreenName("/lowongan/hr")}>HR</MenuItem>
             </Link>
             <Link href="/lowongan/marketing">
-              <MenuItem className={getGreenName("/lowongan/marketing")}>Marketing</MenuItem>
+              <MenuItem className={getGreenName("/lowongan/marketing")}>
+                Marketing
+              </MenuItem>
             </Link>
           </SubMenu>
         </Menu>

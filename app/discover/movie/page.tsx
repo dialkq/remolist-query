@@ -1,12 +1,10 @@
 "use client";
-import TableList from "./TableList";
 import SearchBar from "./SearchBar";
 import { Modal } from "./Modal";
 import TablelistQuery from "./TableListQuery";
 import { QueryClientProvider, QueryClient } from "react-query";
 
 
-const queryClient = new QueryClient();
 const Page = () => {
   ``;
   return (
