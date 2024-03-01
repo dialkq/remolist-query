@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import PaginationTable from "./PaginationTable";
+import Image from "next/image";
 import {
   Table,
   TableBody,
@@ -18,6 +19,7 @@ import { Icon } from "@iconify/react";
 interface Movie {
   id: number;
   original_language: string;
+  poster_path: string;
   release_date: string;
   title: string;
 }
@@ -44,9 +46,9 @@ const fetchMovies = async () => {
 };
 const TablelistQuery = () => {
   const { isLoading, data } = useQuery("items", fetchMovies);
-  
+
   if (isLoading) {
-    return <h2>Loading...</h2>;
+    return <h2 className="text-center">Loading...</h2>;
   }
 
   return (
@@ -54,6 +56,7 @@ const TablelistQuery = () => {
       <Table className="w-10/12 mx-auto border border-black">
         <TableHeader>
           <TableRow className="bg-slate-200">
+            <TableHead className="font-extrabold font-sans text-black"></TableHead>
             <TableHead className="font-extrabold font-sans text-black">
               Movie Title
             </TableHead>
@@ -72,6 +75,15 @@ const TablelistQuery = () => {
               key={items.id}
               className="odd:bg-white even:bg-slate-100 hover:bg-slate-3 00"
             >
+              <TableCell className="">
+                <Image
+                src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+                alt={items.title}
+                width={25}
+                height={20}
+                >
+                </Image>
+              </TableCell>
               <TableCell className="">{items.title}</TableCell>
               <TableCell>{items.original_language}</TableCell>
               <TableCell className="">{items.release_date}</TableCell>
