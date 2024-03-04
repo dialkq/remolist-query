@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { useQuery } from "react-query";
 import PaginationTable from "./PaginationTable";
@@ -6,9 +6,7 @@ import Image from "next/image";
 import {
   Table,
   TableBody,
-  TableCaption,
   TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
@@ -31,9 +29,9 @@ interface ApiResponse {
   total_results: number;
 }
 
-const fetchMovies = async () => {
+const fetchMovies = async (page: number) => {
   const res = await axios.get<ApiResponse>(
-    "https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=1&language=en-US&sort_by=popularity.desc",
+    `https://api.themoviedb.org/3/discover/movie?include_adult=false&include_video=false&page=${page}&language=en-US&sort_by=popularity.desc`,
     {
       headers: {
         accept: "application/json",
@@ -44,8 +42,10 @@ const fetchMovies = async () => {
   );
   return res.data;
 };
+
 const TablelistQuery = () => {
-  const { isLoading, data } = useQuery("items", fetchMovies);
+  const [currentPage, setCurrentPage] = useState(1);
+  const { isLoading, data } = useQuery(["items", currentPage], () => fetchMovies(currentPage), { keepPreviousData: true });
 
   if (isLoading) {
     return <h2 className="text-center">Loading...</h2>;
@@ -103,11 +103,9 @@ const TablelistQuery = () => {
         </TableBody>
       </Table>
       <PaginationTable
-        currentPage={0}
-        setCurrentPage={function (page: number): void {
-          throw new Error("Function not implemented.");
-        }}
-        totalPages={0}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+        totalPages={10}
       />
     </>
   );

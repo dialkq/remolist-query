@@ -17,7 +17,9 @@ interface PaginationTableProps {
 
 const PaginationTable: React.FC<PaginationTableProps> = ({ currentPage, totalPages,  setCurrentPage }) => {
   const handleNext = () => {
-    setCurrentPage(currentPage + 1);
+    if (currentPage < totalPages) {
+      setCurrentPage(currentPage + 1);
+    }
   };
 
   const handlePrevious = () => {
