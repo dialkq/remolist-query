@@ -10,7 +10,7 @@ import Link from "next/link";
 import { RiCompassDiscoverLine } from "react-icons/ri";
 
 export default function SidebarComponent() {
-  const isWide = useMedia("(min-width: 640px)");
+  const isWide = useMedia("(min-width: 1024px)");
   const [toggled, setToggled] = useState(false);
   const pathname = usePathname();
   // STYLING BASED ON PAGES LOCATION
@@ -23,7 +23,7 @@ export default function SidebarComponent() {
   };
 
   return (
-    <div className="flex w-full sm:min-h-screen">
+    <div className="flex w-full lg:min-h-screen">
       <Sidebar
         onBackdropClick={() => setToggled(false)}
         toggled={toggled}
@@ -81,9 +81,9 @@ export default function SidebarComponent() {
       </Sidebar>
 
       {/* BUTTON TOGGLED */}
-      <main className="flex sm:hidden w-full mx-auto py-2">
+      <main className="flex lg:hidden w-full py-2 mx-auto">
         <Button
-          className="sb-button flex sm:hidden ml-6"
+          className="sb-button flex mx-auto lg:hidden"
           onClick={() => setToggled(!toggled)}
         >
           Menu
