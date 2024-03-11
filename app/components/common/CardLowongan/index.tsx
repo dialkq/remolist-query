@@ -1,19 +1,19 @@
 interface CardLowonganProps {
     title: string;
-    company: string;
+    company?: string;
     salary?: string;
-    location: string;
-    description: string;
+    location?: string;
+    description?: string;
     type?: string;
   }
 
 const CardLowongan = ({ data }: { data: CardLowonganProps }) => {
-    return (
+  return (
       <div className="w-full flex flex-col h-screen">
-        <div className="w-full h-32 bg-emerald-300 flex justify-center items-center text-xl font-bold">
+        <div className="w-full h-32 flex justify-center items-center text-xl font-bold">
           Banner Company
         </div>
-        <div className="w-full flex flex-col mt-5 md:mt-8">
+        <div className="w-full flex flex-col mt-5 md:mt-8 pl-5">
           <p>{data.title}</p>
           <p>{data.company}</p>
           <p>{data.location}</p>
@@ -23,7 +23,7 @@ const CardLowongan = ({ data }: { data: CardLowonganProps }) => {
         </div>
         
         {/* BUTTON APPLY AND SAVE */}
-        <div className="mt-5">
+        <div className="mt-5 pl-5">
           <button className="bg-blue-500 mr-10 p-3 rounded-md text-white w-28">
             Apply
           </button>
@@ -34,4 +34,3 @@ const CardLowongan = ({ data }: { data: CardLowonganProps }) => {
   };
   
   export default CardLowongan;
-  

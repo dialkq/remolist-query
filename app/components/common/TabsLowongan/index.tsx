@@ -24,7 +24,7 @@ const TabsLowongan =  (props: TabsLowonganProps) => {
         </p>
       </div>
 
-      <div className="ml-5 my-5 md:my-0">
+      <div className="mx-5 my-5 md:my-0">
         <p className="font-bold text-lg text-black font-serif">{title}</p>
         <p className="font-lg">{company}</p>
         <p className="mt-3 font-base font-sans">{location}</p>

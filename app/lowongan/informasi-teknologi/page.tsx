@@ -37,25 +37,37 @@ const lowonganList: TabsLowonganProps[] = [
 ];
 
 const Page = () => {
-  const [activeJob, setActiveJob] = useState(lowonganList[0]);
+  const [activeJob, setActiveJob] = useState<TabsLowonganProps | null>(null);
+
+  const handleJobClick = (item: TabsLowonganProps) => {
+    setActiveJob(item);
+  };
 
   return (
     <div className="w-full flex bg-white justify-evenly">
-      {/* TabsLowongan */}
+      {/* Bagian TabsLowongan */}
       <div
-        className={`flex flex-col w-11/12 md:w-1/3 my-5 gap-y-6 overflow-auto h-screen ${styles.cardTabs}`}
+        className={`flex flex-col w-11/12 md:w-1/3 mb-5 lg:my-5 gap-y-6 overflow-auto h-screen ${styles.cardTabs}`}
       >
         {lowonganList.map((item, index) => (
-          <Fragment key={index}>
-            <TabsLowongan {...item} onClick={() => setActiveJob(item)} />
-          </Fragment>
+          <TabsLowongan
+            key={index}
+            {...item}
+            onClick={() => handleJobClick(item)}
+          />
         ))}
       </div>
-      {/* CardLowongan */}
       <div
-        className={`w-7/12 my-5 bg-white overflow-auto rounded-3xl h-screen hidden md:flex md:flex-col ${styles.deskripsiTabs}`}
+        className={`w-7/12 mb-5 lg:my-5 bg-white overflow-auto rounded-3xl h-screen hidden md:flex md:flex-col ${styles.deskripsiTabs}`}
       >
-        <CardLowongan data={activeJob} />
+        {activeJob ? (
+          <CardLowongan data={activeJob} />
+        ) : (
+          <div className="mx-auto my-auto">
+            <p className="font-bold text-2xl text-center">Anda belum memilih iklan lowongan kerja</p>
+            <p className="font-semibold text-slate-500 text-center text-base mt-2">Pilih iklan di sebelah kiri untuk melihat detailnya di sini.</p>
+          </div>
+        )}
       </div>
     </div>
   );
