@@ -3,8 +3,9 @@ import TabsLowongan from "@/components/common/TabsLowongan";
 import { TabsLowonganProps } from "@/components/common/TabsLowongan";
 import CardLowongan from "@/components/common/CardLowongan";
 import styles from "./style.module.css";
-import { Fragment } from "react";
 import { useState } from "react";
+import Lottie from "lottie-react"; // Impor pustaka Lottie
+import animation from "./animation.json";
 
 const lowonganList: TabsLowonganProps[] = [
   {
@@ -64,8 +65,9 @@ const Page = () => {
           <CardLowongan data={activeJob} />
         ) : (
           <div className="mx-auto my-auto">
+            <Lottie className="h-40 w-40 mx-auto" animationData={animation} />
             <p className="font-bold text-2xl text-center">Anda belum memilih iklan lowongan kerja</p>
-            <p className="font-semibold text-slate-500 text-center text-base mt-2">Pilih iklan di sebelah kiri untuk melihat detailnya di sini.</p>
+            <p className="font-semibold text-slate-500 text-center text-base">Pilih iklan di sebelah kiri untuk melihat detailnya di sini.</p>
           </div>
         )}
       </div>
