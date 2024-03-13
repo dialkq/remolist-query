@@ -22,10 +22,11 @@ export function Modal() {
     if (!value) {
       setError("Please select an industry");
     } else {
-      const token = typeof window !== 'undefined' ? localStorage.getItem('token') : null;
+      const token =
+        typeof window !== "undefined" ? localStorage.getItem("token") : null;
       try {
         const response = await axios.post(
-          'https://vietexpert-api.d.logique.co.id/api/admin/corporate/store',
+          "https://vietexpert-api.d.logique.co.id/api/admin/corporate/store",
           {
             // Data yang akan dikirim ke API
             // Anda perlu mengganti ini dengan data aktual Anda
@@ -37,21 +38,20 @@ export function Modal() {
             },
           }
         );
-  
+
         // Tangani respons dari API
         if (response.status === 200) {
           // Sukses
-          console.log('Data berhasil disimpan');
+          console.log("Data berhasil disimpan");
         } else {
           // Gagal
-          console.log('Terjadi kesalahan saat menyimpan data');
+          console.log("Terjadi kesalahan saat menyimpan data");
         }
       } catch (error) {
         console.error("There was an error!", error);
       }
     }
   };
-  
 
   return (
     <Dialog open={toggled} onOpenChange={setToggled}>
@@ -64,6 +64,7 @@ export function Modal() {
           <DialogTitle className="font-bold mb-1 sm:mb-3">
             Corporate info
           </DialogTitle>
+
           <div className="flex py-1 items-center justify-between">
             <Label htmlFor="corporate-name" className="">
               Corporate Name
@@ -74,10 +75,6 @@ export function Modal() {
               className="w-1/2"
               required
             />
-          </div>
-
-          <div className="flex py-1 items-center justify-between">
-            <Label htmlFor="corporate-name">Select Industries</Label>
           </div>
         </DialogHeader>
 
