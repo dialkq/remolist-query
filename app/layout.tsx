@@ -28,9 +28,6 @@ export default function RootLayout({
           <LogoBar />
         </div>
         <div className="flex flex-col lg:flex-row w-full">
-          <div className="flex w-auto bg-white">
-            <Sidebar />
-          </div>
           <div className="w-full">{children}</div>
         </div>
       </body>

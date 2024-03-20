@@ -28,7 +28,7 @@ export function Modal() {
   return (
     <Dialog open={toggled} onOpenChange={setToggled}>
       <DialogTrigger asChild>
-        <Button className="bg-black text-white">Add Movie</Button>
+        <Button className="bg-black text-white rounded-lg text-xs md:text-sm md:py-3">Add Movie</Button>
       </DialogTrigger>
       <DialogContent className="w-full">
         {/* MOVIE INFO */}

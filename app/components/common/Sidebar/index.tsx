@@ -1,7 +1,7 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import React from "react";
-import { usePathname, useSearchParams, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
 import { Button } from "@/components/ui/button";
 import { useMedia } from "react-use";
@@ -83,7 +83,7 @@ export default function SidebarComponent() {
       {/* BUTTON TOGGLED */}
       <main className="flex lg:hidden w-full py-2 mx-auto">
         <Button
-          className="sb-button flex mx-auto lg:hidden"
+          className="sb-button flex mx-auto lg:hidden bg-black"
           onClick={() => setToggled(!toggled)}
         >
           Menu

@@ -53,7 +53,7 @@ const TablelistQuery = () => {
 
   return (
     <>
-      <Table className="w-10/12 mx-auto border border-black">
+      <Table className="w-full mx-auto border border-black">
         <TableHeader>
           <TableRow className="bg-slate-200">
             <TableHead className="font-extrabold font-sans text-black"></TableHead>
