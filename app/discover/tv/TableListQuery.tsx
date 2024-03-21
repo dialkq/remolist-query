@@ -57,7 +57,8 @@ const TablelistQuery = () => {
 
   return (
     <>
-      <Table className="w-10/12 mx-auto border border-black">
+      <p className="text-mono font-semibold md:text-xl py-3 md:pb-5">Discover TV</p>
+      <Table className="w-full mx-auto border border-black">
         <TableHeader>
           <TableRow className="bg-slate-200">
             <TableHead className="font-extrabold font-sans text-black"></TableHead>

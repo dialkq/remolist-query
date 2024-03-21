@@ -45,7 +45,11 @@ const fetchMovies = async (page: number) => {
 
 const TablelistQuery = () => {
   const [currentPage, setCurrentPage] = useState(1);
-  const { isLoading, data } = useQuery(["items", currentPage], () => fetchMovies(currentPage), { keepPreviousData: true });
+  const { isLoading, data } = useQuery(
+    ["items", currentPage],
+    () => fetchMovies(currentPage),
+    { keepPreviousData: true }
+  );
 
   if (isLoading) {
     return <h2 className="text-center">Loading...</h2>;
@@ -53,6 +57,9 @@ const TablelistQuery = () => {
 
   return (
     <>
+      <p className="text-mono font-semibold md:text-xl py-3 md:pb-5">
+        Discover Movie
+      </p>
       <Table className="w-full mx-auto border border-black">
         <TableHeader>
           <TableRow className="bg-slate-200">
@@ -77,12 +84,11 @@ const TablelistQuery = () => {
             >
               <TableCell className="">
                 <Image
-                src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
-                alt={items.title}
-                width={25}
-                height={20}
-                >
-                </Image>
+                  src={`https://image.tmdb.org/t/p/original${items.poster_path}`}
+                  alt={items.title}
+                  width={25}
+                  height={20}
+                ></Image>
               </TableCell>
               <TableCell className="">{items.title}</TableCell>
               <TableCell>{items.original_language}</TableCell>
