@@ -44,7 +44,7 @@ const Page = () => {
           </div>
           {/* CARD LOWONGAN */}
           <div
-            className={`w-7/12 mb-5 lg:my-5 overflow-auto rounded-3xl h-screen hidden md:flex md:flex-col ${styles.deskripsiTabs}`}
+            className={`bg-foreground/5 w-7/12 mb-5 lg:my-5 overflow-auto rounded-3xl h-screen hidden md:flex md:flex-col ${styles.deskripsiTabs}`}
           >
             {activeJob ? (
               <CardLowongan data={activeJob} />
@@ -57,7 +57,7 @@ const Page = () => {
                 <p className="font-bold text-2xl text-center">
                   Anda belum memilih iklan lowongan kerja
                 </p>
-                <p className="font-semibold text-slate-500 text-center text-base">
+                <p className="font-semibold text-foreground/70 text-center text-base">
                   Pilih iklan di sebelah kiri untuk melihat detailnya di sini.
                 </p>
               </div>
