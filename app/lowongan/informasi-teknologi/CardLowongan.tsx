@@ -1,13 +1,6 @@
-interface CardLowonganProps {
-    title: string;
-    company?: string;
-    salary?: string;
-    location?: string;
-    description?: string;
-    type?: string;
-  }
+import { TabsLowonganProps } from "./informasi-teknologi-api";
 
-const CardLowongan = ({ data }: { data: CardLowonganProps }) => {
+const CardLowongan = ({ data }: { data: TabsLowonganProps }) => {
   return (
       <div className="w-full flex flex-col h-screen">
         <div className="w-full h-32 flex justify-center items-center text-xl font-bold">
