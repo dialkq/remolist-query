@@ -7,29 +7,25 @@ import { Key, useState } from "react";
 import Lottie from "lottie-react";
 import animation from "./animation.json";
 import Sidebar from "@/components/common/Sidebar";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
+import { Drawer, DrawerClose, DrawerContent } from "@/components/ui/drawer";
 import { Button } from "@/components/ui/button";
+import { useMediaQuery } from "react-responsive";
 
 const Page = () => {
   const [activeJob, setActiveJob] = useState<TabsLowonganProps | null>(null);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const isMobile = useMediaQuery({ query: "(max-width: 767px)" });
 
   const handleJobClick = (item: TabsLowonganProps) => {
     setActiveJob(item);
-    setIsDrawerOpen(true); 
+    if (isMobile) {
+      // tambahkan ini
+      setIsDrawerOpen(true); // tambahkan ini
+    }
   };
 
   const handleClose = () => {
-    setIsDrawerOpen(false); 
+    setIsDrawerOpen(false);
   };
 
   return (
@@ -85,11 +81,13 @@ const Page = () => {
       {/* DRAWER */}
       <div className="flex md:hidden">
         <Drawer open={isDrawerOpen} onClose={handleClose}>
-          <DrawerContent className="flex flex-col h-3/4 overflow-auto">
+          <DrawerContent className="flex flex-col">
             <div>{activeJob && <CardLowongan data={activeJob} />}</div>
             <div className="flex justify-between mx-auto">
-              <DrawerClose asChild>
-                <Button variant="outline" onClick={handleClose}>X</Button>
+              <DrawerClose asChild className="bg-foreground/5">
+                <Button variant="outline" onClick={handleClose}>
+                  X
+                </Button>
               </DrawerClose>
             </div>
           </DrawerContent>
