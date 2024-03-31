@@ -26,8 +26,7 @@ const PaginationTable: React.FC<PaginationTableProps> = ({
     }
   };
 
-  const handlePrevious = () => {
-    if (currentPage > 1) {
+  const handlePrevious = () => {    if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };

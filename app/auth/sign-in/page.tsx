@@ -5,7 +5,7 @@ import { useRouter } from "next/navigation";
 const Page = () => {
   const router = useRouter();
   const handleClick = () => {
-    router.push('/data-list/corporate-status');
+    router.push('/discover/movie');
   };
 
   return (

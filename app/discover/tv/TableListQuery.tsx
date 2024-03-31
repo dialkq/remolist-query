@@ -63,7 +63,7 @@ const TablelistQuery = () => {
           <TableRow className="bg-slate-200">
             <TableHead className="font-extrabold font-sans text-black"></TableHead>
             <TableHead className="font-extrabold font-sans text-black">
-              Movie Title
+              TV Title
             </TableHead>
             <TableHead className="font-extrabold font-sans text-black">
               Language

@@ -36,10 +36,3 @@ const Page = () => {
 };
 
 export default Page;
-
-{
-  /* <SearchBar /> */
-}
-{
-  /* <Modal /> */
-}

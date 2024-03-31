@@ -19,8 +19,7 @@ const Page = () => {
   const handleJobClick = (item: TabsLowonganProps) => {
     setActiveJob(item);
     if (isMobile) {
-      // tambahkan ini
-      setIsDrawerOpen(true); // tambahkan ini
+      setIsDrawerOpen(true);
     }
   };
 
@@ -55,6 +54,7 @@ const Page = () => {
               )
             )}
           </div>
+          
           {/* CARD LOWONGAN */}
           <div
             className={`w-7/12 mb-5 lg:my-5 overflow-auto rounded-3xl h-screen hidden md:flex md:flex-col ${styles.deskripsiTabs}`}
@@ -78,6 +78,7 @@ const Page = () => {
           </div>
         </div>
       </div>
+
       {/* DRAWER */}
       <div className="flex md:hidden">
         <Drawer open={isDrawerOpen} onClose={handleClose}>
