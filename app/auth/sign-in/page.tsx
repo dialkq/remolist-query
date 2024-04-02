@@ -1,11 +1,19 @@
 "use client";
 import Link from "next/link";
-import React, { useState } from "react";
 import { useRouter } from "next/navigation";
-const Page = () => {
+import { signInWithGoogle } from "@/firebase/googleConfig";
+import { MouseEvent, FC } from "react";
+
+const Page: FC = () => {
   const router = useRouter();
-  const handleClick = () => {
-    router.push('/discover/movie');
+  const handleGoogleSignIn = async (e: MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    const user = await signInWithGoogle();
+    if (user) {
+      router.push("/discover/movie");
+    } else {
+      alert("Gagal login dengan Google. Silakan coba lagi.");
+    }
   };
 
   return (
@@ -54,6 +62,14 @@ const Page = () => {
 
             {/* FORGOT PASSWORD? */}
             <div className="flex items-center justify-between">
+              {/* SIGN WITH GOOGLE */}
+              <button
+                className="text-sm text-blue-400 font-medium text-primary-600 hover:underline dark:text-primary-500"
+                type="button"
+                onClick={handleGoogleSignIn}
+              >
+                Sign in with Google
+              </button>
               <Link
                 href="/auth/forgot-password"
                 className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
@@ -66,7 +82,6 @@ const Page = () => {
             <button
               type="submit"
               className="w-full text-white font-mono text-base bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:outline-none focus:ring-indigo-700 font-medium rounded-lg py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              onClick={handleClick}
             >
               Submit
             </button>
