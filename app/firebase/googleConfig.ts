@@ -12,7 +12,7 @@ const firebaseConfig = {
 };
 
 const app: FirebaseApp = !getApps().length ? initializeApp(firebaseConfig) : getApp();
-const auth = getAuth(app); // Pindahkan definisi ini sebelum fungsi signInWithGoogle
+const auth = getAuth(app);
 
 const provider = new GoogleAuthProvider();
 
