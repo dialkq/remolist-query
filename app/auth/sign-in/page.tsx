@@ -10,6 +10,7 @@ const Page: FC = () => {
     e.preventDefault();
     const user = await signInWithGoogle();
     if (user) {
+      localStorage.setItem('user', JSON.stringify({ email: user.email, displayName: user.displayName }));
       router.push("/discover/movie");
     } else {
       alert("Gagal login dengan Google. Silakan coba lagi.");

@@ -4,11 +4,11 @@ import Link from "next/link";
 import { Icon } from "@iconify/react";
 import uiUserProfile from "@iconify/icons-healthicons/ui-user-profile";
 import BtnSignOut from "../BtnSignOut";
-import { useAuth } from "@/authContext";
 
 const LogoBar = () => {
-  const user = useAuth();
   const pathname = usePathname();
+  const userString = localStorage.getItem("user");
+  const user = userString ? JSON.parse(userString) : null;
 
   return (
     <div className="w-full flex justify-between py-4 bg-black border-b border-black shadow-sm">
@@ -32,7 +32,7 @@ const LogoBar = () => {
         </Link>
       ) : (
         <div className="flex justify-between items-center mr-6 sm:mr-8 p-1">
-          {user && (
+          {user && user.email && (
             <div className="hidden sm:flex justify-between items-center mr-8 sm:mr-12">
               <Icon
                 icon={uiUserProfile}

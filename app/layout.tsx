@@ -3,7 +3,6 @@ import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import LogoBar from "./components/common/LogoBar";
-import { AuthProvider } from "@/authContext";
 
 export const fontSans = FontSans({
   subsets: ["latin"],
