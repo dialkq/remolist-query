@@ -3,28 +3,52 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInWithGoogle } from "@/firebase/googleConfig";
 import { MouseEvent, FC } from "react";
-
+import { useState } from "react";
 const Page: FC = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const handleGoogleSignIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const user = await signInWithGoogle();
-    if (user) {
-      localStorage.setItem('user', JSON.stringify({ email: user.email, displayName: user.displayName }));
+    setIsLoading(true);
+    try {
+      const user = await signInWithGoogle();
+      if (user) {
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ email: user.email, displayName: user.displayName })
+        );
+        router.push("/discover/movie");
+      } else {
+        alert("Gagal login dengan Google. Silakan coba lagi.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const email = e.currentTarget.email.value;
+      const password = e.currentTarget.password.value;
+      localStorage.setItem('user', JSON.stringify({ email: email, password: password }));
       router.push("/discover/movie");
-    } else {
-      alert("Gagal login dengan Google. Silakan coba lagi.");
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
   return (
-    <div className="flex w-full mx-auto flex-col items-center mt-5 sm:mt-10">
+    <div className="flex w-11/12 lg:w-full mx-auto flex-col items-center mt-5 sm:mt-10">
       <div className="w-full rounded-lg border-double border-4 border-black md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Sign in to your account
           </h1>
-          <form className="space-y-4 md:space-y-6" action="#">
+          <form className="space-y-4 md:space-y-6" onSubmit={handleSubmitLogin}>
             {/* EMAIL */}
             <div>
               <label
@@ -62,18 +86,18 @@ const Page: FC = () => {
             </div>
 
             {/* FORGOT PASSWORD? */}
-            <div className="flex items-center justify-between">
+            <div className="flex flex-col md:flex-row items-center justify-between">
               {/* SIGN WITH GOOGLE */}
               <button
-                className="text-sm text-blue-400 font-medium text-primary-600 hover:underline dark:text-primary-500"
+                className="text-xs md:text-sm text-blue-600 text-primary-600 hover:underline dark:text-primary-500"
                 type="button"
                 onClick={handleGoogleSignIn}
               >
-                Sign in with Google
+                {isLoading ? "Loading..." : "Sign in with Google"}
               </button>
               <Link
                 href="/auth/forgot-password"
-                className="text-sm font-medium text-primary-600 hover:underline dark:text-primary-500"
+                className="mt-5 md:mt-0 text-xs md:text-sm text-primary-600 hover:underline dark:text-primary-500"
               >
                 Forgot password?
               </Link>
@@ -83,8 +107,9 @@ const Page: FC = () => {
             <button
               type="submit"
               className="w-full text-white font-mono text-base bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:outline-none focus:ring-indigo-700 font-medium rounded-lg py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              disabled={isLoading}
             >
-              Submit
+              {isLoading ? "Loading..." : "Submit"}
             </button>
 
             {/* SIGN UP LINK */}

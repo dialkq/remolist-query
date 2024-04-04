@@ -7,7 +7,10 @@ import BtnSignOut from "../BtnSignOut";
 
 const LogoBar = () => {
   const pathname = usePathname();
-  const userString = localStorage.getItem("user");
+  let userString;
+  if (typeof window !== "undefined") {
+    userString = localStorage.getItem("user");
+  }
   const user = userString ? JSON.parse(userString) : null;
 
   return (
