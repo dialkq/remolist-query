@@ -7,6 +7,26 @@ import { useState } from "react";
 const Page: FC = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+
+  // HANDLE MANUAL LOGIN
+  const handleSubmitLogin = async (e: MouseEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsLoading(true);
+    try {
+      const email = e.currentTarget.email.value;
+      const password = e.currentTarget.password.value;
+      localStorage.setItem(
+        "user",
+        JSON.stringify({ email: email, password: password })
+      );
+      router.push("/discover/movie");
+    } catch (error) {
+      alert("Gagal login. Silakan coba lagi.");
+      console.error(error);
+    }
+  };
+
+  // HANDLE GOOGLE LOGIN
   const handleGoogleSignIn = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     setIsLoading(true);
@@ -21,21 +41,6 @@ const Page: FC = () => {
       } else {
         alert("Gagal login dengan Google. Silakan coba lagi.");
       }
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
-  const handleSubmitLogin = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsLoading(true);
-    try {
-      const email = e.currentTarget.email.value;
-      const password = e.currentTarget.password.value;
-      localStorage.setItem('user', JSON.stringify({ email: email, password: password }));
-      router.push("/discover/movie");
-    } catch (error) {
-      console.error(error);
     } finally {
       setIsLoading(false);
     }
@@ -93,7 +98,7 @@ const Page: FC = () => {
                 type="button"
                 onClick={handleGoogleSignIn}
               >
-                {isLoading ? "Loading..." : "Sign in with Google"}
+                Sign in with Google
               </button>
               <Link
                 href="/auth/forgot-password"
@@ -107,7 +112,6 @@ const Page: FC = () => {
             <button
               type="submit"
               className="w-full text-white font-mono text-base bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:outline-none focus:ring-indigo-700 font-medium rounded-lg py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              disabled={isLoading}
             >
               {isLoading ? "Loading..." : "Submit"}
             </button>

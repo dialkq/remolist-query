@@ -1,4 +1,5 @@
 "use client";
+import { useState, useEffect } from 'react';
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Icon } from "@iconify/react";
@@ -7,11 +8,15 @@ import BtnSignOut from "../BtnSignOut";
 
 const LogoBar = () => {
   const pathname = usePathname();
-  let userString;
-  if (typeof window !== "undefined") {
-    userString = localStorage.getItem("user");
-  }
-  const user = userString ? JSON.parse(userString) : null;
+  const [user, setUser] = useState<{ email: string; password: string } | null>(null);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const userString = localStorage.getItem("user");
+      const user = userString ? JSON.parse(userString) : null;
+      setUser(user);
+    }
+  }, []);
 
   return (
     <div className="w-full flex justify-between py-4 bg-black border-b border-black shadow-sm">
@@ -20,7 +25,7 @@ const LogoBar = () => {
           Remolist
         </p>
       </Link>
-
+    
       {pathname === "/auth/sign-in" ? (
         <Link href="/auth/sign-up">
           <p className="text-white text-base mr-6 sm:mr-8 p-1 hover:text-slate-400">
