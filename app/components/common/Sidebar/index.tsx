@@ -68,14 +68,6 @@ export default function SidebarComponent() {
                 Finance
               </MenuItem>
             </Link>
-            <Link href="/lowongan/hr">
-              <MenuItem className={getGreenName("/lowongan/hr")}>HR</MenuItem>
-            </Link>
-            <Link href="/lowongan/marketing">
-              <MenuItem className={getGreenName("/lowongan/marketing")}>
-                Marketing
-              </MenuItem>
-            </Link>
           </SubMenu>
         </Menu>
       </Sidebar>
