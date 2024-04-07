@@ -2,14 +2,14 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { signInWithGoogle } from "@/firebase/googleConfig";
-import { MouseEvent, FC } from "react";
+import { MouseEvent, FormEvent } from "react";
 import { useState } from "react";
-const Page: FC = () => {
+const Page = () => {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
   // HANDLE MANUAL LOGIN
-  const handleSubmitLogin = async (e: MouseEvent<HTMLFormElement>) => {
+  const handleSubmitLogin = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsLoading(true);
     try {
@@ -41,19 +41,20 @@ const Page: FC = () => {
       } else {
         alert("Gagal login dengan Google. Silakan coba lagi.");
       }
-    } finally {
-      setIsLoading(false);
+    } catch (error) {
+      alert("Gagal login. Silakan coba lagi.");
+      console.error(error);
     }
   };
 
   return (
-    <div className="flex w-11/12 lg:w-full mx-auto flex-col items-center mt-5 sm:mt-10">
+    <div className="flex w-11/12 lg:w-full mx-auto flex-col items-center my-5 sm:my-10">
       <div className="w-full rounded-lg border-double border-4 border-black md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
           <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
             Sign in to your account
           </h1>
-          <form className="space-y-4 md:space-y-6" onSubmit={handleSubmitLogin}>
+          <form className="space-y-4 md:space-y-6">
             {/* EMAIL */}
             <div>
               <label

@@ -16,7 +16,7 @@ const LogoBar = () => {
       const user = userString ? JSON.parse(userString) : null;
       setUser(user);
     }
-  }, []);
+  }, [user]);
 
   return (
     <div className="w-full flex justify-between py-4 bg-black border-b border-black shadow-sm">
