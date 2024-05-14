@@ -11,7 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-
 import { Icon } from "@iconify/react";
 
 interface Movie {
