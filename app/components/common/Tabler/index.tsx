@@ -64,7 +64,7 @@ export function Tabler() {
           ))
         ) : (
           <TableRow>
-            <TableCell colSpan={4}>Loading data...</TableCell>
+            <TableCell colSpan={4}>Loading data....</TableCell>
           </TableRow>
         )}
       </TableBody>
